@@ -1,0 +1,8 @@
+flask
+anthropic
+pandas
+numpy
+requests
+python-telegram-bot
+MetaTrader5
+yfinance
