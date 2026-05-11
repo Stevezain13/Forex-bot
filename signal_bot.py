@@ -171,11 +171,17 @@ def check_news_sentiment(news: list, signal: str) -> dict:
 def get_data(symbol: str, period="3mo", interval="1h") -> pd.DataFrame:
     try:
         import yfinance as yf
-        df = yf.download(symbol, period=period, interval=interval, progress=False)
-        if df.empty:
+        ticker = yf.Ticker(symbol)
+        df     = ticker.history(period=period, interval=interval)
+        if df is None or df.empty or len(df) < 50:
+            log.warning(f"Not enough data for {symbol}")
             return None
         df.columns = [c.lower() for c in df.columns]
         df = df.reset_index()
+        for col in ["open", "high", "low", "close"]:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+        df = df.dropna(subset=["open", "high", "low", "close"])
+        log.info(f"✅ Got {len(df)} candles for {symbol}")
         return df
     except Exception as e:
         log.warning(f"Data fetch failed for {symbol}: {e}")
@@ -580,3 +586,6 @@ def run():
 
 if __name__ == "__main__":
     run()
+
+
+    
