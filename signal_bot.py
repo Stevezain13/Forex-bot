@@ -120,13 +120,11 @@ class Heartbeat:
         if hours_since >= 6:
             self.last_beat = now
             eat = (now.hour + 3) % 24
-            send_telegram(f"💓 <b>BOT HEARTBEAT</b>
-"
-                         f"🕐 Time: {eat:02d}:{now.minute:02d} EAT
-"
-                         f"✅ Bot is running smoothly!
-"
-                         f"📊 Watching: EURUSD | GBPUSD | USDJPY")
+            msg = "💓 <b>BOT HEARTBEAT</b>" + chr(10)
+            msg += "🕐 Time: " + str(eat) + ":" + str(now.minute).zfill(2) + " EAT" + chr(10)
+            msg += "✅ Bot is running smoothly!" + chr(10)
+            msg += "📊 Watching: EURUSD | GBPUSD | USDJPY"
+            send_telegram(msg)
 
 heartbeat = Heartbeat()
 
@@ -549,6 +547,4 @@ def score_signal(df, signal, ob, bos, fvg, liquidity,
                 score+=1; details.append(f"✅ RSI good ({float(l['rsi']):.0f})")
             if float(l["adx"]) > 25:
                 score+=1; details.append(f"✅ ADX strong ({float(l['adx']):.0f})")
-            if bos == "BULLISH":
-                score+=2; d
-    
+          
