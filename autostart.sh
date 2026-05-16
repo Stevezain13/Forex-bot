@@ -10,9 +10,9 @@ echo "  STEPHEN'S SIGNAL BOT AUTO START"
 echo "======================================"
 
 # ── YOUR KEYS — FILL THESE IN ──────────────────────
-export TELEGRAM_TOKEN="your telegram token here"
+export TELEGRAM_TOKEN="8749193019:AAEUm6g8PqZk0gH2yKLtv50ANauF4lRWQbs"
 export TELEGRAM_CHAT="7781270946"
-export NEWS_KEY="your newsapi key here"
+export NEWS_KEY="a7605dac1cc94f5081c9701e4db949af"
 # ────────────────────────────────────────────────────
 
 echo "Setting up environment..."
